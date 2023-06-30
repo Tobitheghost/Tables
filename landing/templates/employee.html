@@ -1,0 +1,33 @@
+{% extends "base.html"%}
+{% block title %} Tables {% endblock %}
+{% block content %}
+<div class="tables_section">
+    <form method="post">
+    <table>
+        <thead>
+            <tr>
+                {% for header in headers %}
+                <th>{{header}}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for rows in contents %}
+                {% if  loop.index0%2 == 0 %}
+                    {% set tr_class = "even"%}
+                {% else %}
+                    {%set tr_class = "odd"%}
+                {% endif %}
+                <tr class={{tr_class}}>
+                    {% for entry in range(6) %}
+                        {% set entries = rows[headers[entry]] %}
+                            <td>{{entries}}</td>
+                    {% endfor %}
+                </tr>    
+            {% endfor %}
+        </tbody>
+    </table>
+    <button type="submit" value="submit">View</button>
+    </form>
+</div>
+{% endblock %}
